@@ -20,7 +20,6 @@ const landing_slider = new Swiper('.slider1', {
 window.onload = function() {
     if (e) {
         e.classList.add("body--ready");
-        console.log("body ready");
         loading_animation();
         loco();
     }
@@ -43,7 +42,6 @@ function loco() {
 
     scroller.on('call', (fun, dir, obj) => {
         if (fun == "headerSection") {
-            console.log("header visible");
             menuBar.classList.toggle("headerVisible");
             document.getElementById("menu").classList.toggle("mainMenuVisibility");
         }
@@ -51,7 +49,6 @@ function loco() {
 
     scroller.on("scroll", ({ direction }) => {
         scrollDirection = direction;
-        console.log(scrollDirection);
         if (scrollDirection == "up") {
             menuBarParent.classList.add("scrolling_up");
         } else {
@@ -76,7 +73,6 @@ function loading_animation() {
             delay: (el, i) => 50 * (i + 1),
             complete: function(anim) {
                 e.classList.add("body--intro");
-                console.log("loading animation completed");
                 if (homepage) {
                     landing_slider.autoplay.start();
                 }
@@ -89,7 +85,6 @@ function openMenu() {
     menuButton.classList.add("active");
     var m1 = anime.timeline({
         complete: function(anim) {
-            console.log("menu comlpetely openened");
             menuButton.disabled = false;
         }
     }).add({
@@ -113,7 +108,6 @@ function closeMenu() {
     var p1 = anime.timeline({
         complete: function(anim) {
             menuHolder.classList.remove("active");
-            console.log("menu comlpetely closed");
             menuButton.disabled = false;
         }
     }).add({
@@ -135,12 +129,10 @@ function closeMenu() {
 
 function menu() {
     if (classExist(menuHolder, "active")) {
-        console.log("menu should close");
         closeMenu();
         menuButton.disabled = true;
     } else {
         openMenu();
-        console.log("menu should open");
         menuButton.disabled = true;
     }
 }
@@ -238,7 +230,6 @@ jQuery(document).ready(function(e) {
     }
 
     $(".menu li a").hover(function() {
-        console.log($(this).data("menu-index"));
         select_menu_bg($(this).data("menu-index"));
     });
 
